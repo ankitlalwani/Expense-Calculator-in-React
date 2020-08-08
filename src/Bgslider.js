@@ -17,7 +17,7 @@ class Bgslider extends Component {
             <section>
                 <div>
             <BackgroundSlider
-                images={[image4]}
+                images={[image4, image2, image3]}
                 duration={5} transition={2} />
             </div>
             </section>

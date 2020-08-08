@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ExpenseController {
 
     private ExpenseRepo expenseRepo;
@@ -41,7 +42,7 @@ public class ExpenseController {
     }
 
     @RequestMapping(value="/expenses/{id}", method=RequestMethod.DELETE)
-    ResponseEntity<Expense> deleteExpense(@PathVariable("id") long Id) throws URISyntaxException {
+    ResponseEntity<Expense> deleteExpense(@PathVariable("id") Long Id) throws URISyntaxException {
 
         expenseRepo.deleteById(Id);
         return ResponseEntity.ok().build();

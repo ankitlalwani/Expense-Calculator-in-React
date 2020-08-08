@@ -6,6 +6,7 @@ import Category from './Category';
 import './App.css';
 import Expenses from './Expenses';
 import Login from './Login';
+import Register from './Register';
 
 class App extends Component {
   state = {  }
@@ -17,6 +18,7 @@ class App extends Component {
         <Route path = '/categories' exact={true} component={Category}/>
         <Route path = '/expenses' exact={true} component={Expenses}/>
         <Route path = '/login' exact={true} component={Login}/>
+        <Route path = '/register' exact={true} component={Register}/>
       </Switch>
     </Router>
      );

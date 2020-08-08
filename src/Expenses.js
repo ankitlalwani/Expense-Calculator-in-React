@@ -3,10 +3,11 @@ import AppNav from './AppNav';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Container, FormGroup, Form, Button, Label, Input, Table} from "reactstrap";
-    import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Category from "./Category";
 import Moment from 'react-moment';
 import Bgslider from "./Bgslider"
+import BgImage from "./BgImage"
 
 
 class Expenses extends Component {
@@ -41,7 +42,9 @@ constructor(props){
 
      async componentDidMount(){
         const response = await fetch("/api/categories")
-        const body = await response.json();  
+        const body = await response.json(); 
+        const username = localStorage.getItem('username');
+        console.log('UserName from localvariable ', username); 
         const response1 = await fetch("/api/getExpenses")
         const body1 = await response1.json();
         this.setState({categories :body, isLoading :false, Expenses: body1});
@@ -60,10 +63,10 @@ constructor(props){
 
     async remove(id){
 
-        await fetch('/api/expenses/${id}', {
+        await fetch('http://localhost:8080/api/expenses/'+id, {
             method: 'DELETE' ,
             headers: {
-                'Accept': 'application/json',
+                'accepts': 'application/json',
                 'Content-Type': 'application/json'
             }
         }).then(()=>{
@@ -129,7 +132,6 @@ constructor(props){
         return ( 
             <div>
                 <AppNav />
-                <Bgslider />
                 <Container>
                     <Form onSubmit={this.addExpense}>
                     <FormGroup >

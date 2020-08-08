@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     private UserRepo userRepo;
@@ -28,21 +29,27 @@ public class UserController {
 
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     ResponseEntity<?> validateLogin(@RequestBody User user){
         String password = user.getPassword();
 
         Optional<User> user1= userRepo.findById(user.getUsername());
-        Optional<String> username = user1.map(User::getUsername);
-        Optional<String> password1 = user1.map(User::getPassword);
+        String username = user1.map(User::getUsername).toString().substring(9);
+        String password1 = user1.map(User::getPassword).toString().substring(9);
+
 
         System.out.println("UserName: "+ username);
-        if (username==null){
+        if (username.equals("empty")){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else {
             System.out.println("Password : " + password);
-            System.out.println("Password1 : " + String.valueOf(password1));
-            if(password==String.valueOf(password1)) {
+            System.out.println("Password1 : " + password1);
+
+            int count = password1.length();
+            password1=password1.substring(0,count-1);
+            System.out.println("Password1 : " + password1);
+
+            if(password.equals(password1)) {
 
                 return user1.map(response -> ResponseEntity.ok().body(response))
                         .orElse(new ResponseEntity<>(HttpStatus.UNAUTHORIZED));

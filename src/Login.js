@@ -3,7 +3,7 @@ import AppNav from './AppNav';
 import { Container, FormGroup, Form, Button, Label, Input, Table} from "reactstrap";
 import { Link } from "react-router-dom";
 import Bgslider from "./Bgslider"
-
+import BgImage from "./BgImage"
 
 
 
@@ -21,8 +21,6 @@ class Login extends Component {
          this.submitUserLoginForm = this.submitUserLoginForm.bind(this);
     }
 
-    state = {  }
-
     handleChange(event) {
         let fields = this.state.fields;
         fields[event.target.name] = event.target.value;
@@ -32,15 +30,33 @@ class Login extends Component {
   
       }
 
-      submitUserLoginForm(e) {
+      async submitUserLoginForm(e) {
         e.preventDefault();
         console.log(" Fields: ",this.state)
         if (this.validateForm()) {
-            let fields = {};
-            fields["username"] = "";
-            fields["password"] = "";
-            this.setState({fields:fields});
-            alert("Form submitted");
+            console.log(this.state);
+            
+            const fields = this.state.fields;
+            console.log(fields);
+
+                await fetch('http://localhost:8080/api/login', {
+                method: 'POST' ,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(fields)
+        }).then((response) => {
+          if(response.status===200){
+            //redirect to expenses after successful login
+            this.props.history.push('/expenses');
+          }else if(response.status===401){
+            alert('Unauthorized');
+          } else{
+            alert('Not Found');
+          }
+        }) ;   
+
         }
   
       }
@@ -88,7 +104,6 @@ class Login extends Component {
         return (
         <div>
             <AppNav />
-            <Bgslider />
             <Container>
                     <Form name="userLoginForm" onSubmit={this.submitUserLoginForm}>
                     <FormGroup >
@@ -103,7 +118,7 @@ class Login extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Login</Button>{''}
-                        <Button color="secondary" tag={Link} to='/'>Register here</Button>
+                        <Button color="secondary" tag={Link} to='/register'>Register here</Button>
                     </FormGroup>
                     </Form>
                 </Container>

@@ -1,6 +1,6 @@
-insert into user values ('ankitlalwani', '12345');
-insert into user values ( 'anuadwani', '12345' );
-insert into user values ( 'arpitl', '12345' );
+insert into user values ('ankitlalwani', 'Arpitl@2710');
+insert into user values ( 'anuadwani', 'Arpitl@2710' );
+insert into user values ( 'arpitl', 'Arpitl@2710' );
 
 insert into category values ( 101, 'Travel' );
 insert into category values ( 102, 'Home' );
