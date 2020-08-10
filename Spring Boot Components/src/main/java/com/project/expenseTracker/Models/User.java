@@ -30,8 +30,18 @@ public class User {
     }
 
     @Id
+    @Column(unique = true)
     private String Username;
     private String Password;
+    private String emailId;
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     Set<Expense> expense;

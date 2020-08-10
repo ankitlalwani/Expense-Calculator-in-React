@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import AppNav from './AppNav';
-import { Container, FormGroup, Form, Button, Label, Input, Table} from "reactstrap";
+import { Container, FormGroup, Form, Button, Label, Input, Table, Badge} from "reactstrap";
 import { Link } from "react-router-dom";
 import Bgslider from "./Bgslider"
 import BgImage from "./BgImage";
@@ -15,14 +15,13 @@ class Register extends Component {
         super(props);
    
         this.state = {
-            fields: {username: '', password: ''},
+            usernameList: [],
+            fields: {username: '', password: '', emailid: ''},
             errors: {}
         }
          this.handleChange = this.handleChange.bind(this);
          this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
     }
-
-    state = {  }
 
     handleChange(event) {
         let fields = this.state.fields;
@@ -33,16 +32,48 @@ class Register extends Component {
   
       }
 
-      submituserRegistrationForm(e) {
+    async  submituserRegistrationForm(e) {
         e.preventDefault();
         console.log(" Fields: ",this.state)
         if (this.validateForm()) {
-            let fields = {};
-            fields["username"] = "";
-            fields["email"] = "";
-            fields["password"] = "";
-            this.setState({fields:fields});
-            alert("Form submitted");
+            const fields = this.state.fields;
+            let errors = {};
+            console.log(fields);
+
+        const response = await fetch("http://localhost:8080/api/allUsers")
+        const body = await response.json(); 
+        const userExist = body.filter(user=>user.username===fields.username);
+
+        if(userExist.length!==0){
+            errors["username"] = "*The user already exists, please choose another username";
+            this.setState({
+                fields: fields,
+                errors: errors
+              });
+        }else{
+            
+            await fetch('http://localhost:8080/api/addUser',{
+                method: 'POST' ,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(fields)
+            }).then((response)=>{
+
+                if(response.status===201){
+            
+                    sessionStorage.setItem('username', fields.username);
+                    sessionStorage.setItem('message', 'User Added succesfully');
+        
+                    //redirect to expenses after successful login
+                    this.props.history.push('/expenses');
+                  } else{
+                    alert('some error occurred');
+                  }
+            });
+        }
+
         }
   
       }
@@ -59,7 +90,7 @@ class Register extends Component {
         }
   
         if (typeof fields["username"] !== "undefined") {
-          if (!fields["username"].match(/^[a-zA-Z ]*$/)) {
+          if (!fields["username"].match(/^[a-zA-Z0-9 ]*$/)) {
             formIsValid = false;
             errors["username"] = "*Please enter alphabet characters only.";
           }

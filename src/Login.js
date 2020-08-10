@@ -35,7 +35,7 @@ class Login extends Component {
         console.log(" Fields: ",this.state)
         if (this.validateForm()) {
             console.log(this.state);
-            
+            let errors = {};
             const fields = this.state.fields;
             console.log(fields);
 
@@ -48,13 +48,21 @@ class Login extends Component {
                 body: JSON.stringify(fields)
         }).then((response) => {
           if(response.status===200){
+            
+            sessionStorage.setItem('username', fields.username)
+
             //redirect to expenses after successful login
             this.props.history.push('/expenses');
           }else if(response.status===401){
-            alert('Unauthorized');
+            errors["password"] = "*Invalid password, Please enter correct User credentials";
           } else{
-            alert('Not Found');
+            errors["username"] = "*user not found, Please register";
+
           }
+          this.setState({
+            errors: errors,
+            fields: fields
+          })
         }) ;   
 
         }
@@ -73,7 +81,7 @@ class Login extends Component {
         }
   
         if (typeof fields["username"] !== "undefined") {
-          if (!fields["username"].match(/^[a-zA-Z ]*$/)) {
+          if (!fields["username"].match(/^[a-zA-Z0-9 ]*$/)) {
             formIsValid = false;
             errors["username"] = "*Please enter alphabet characters only.";
           }
@@ -104,6 +112,7 @@ class Login extends Component {
         return (
         <div>
             <AppNav />
+            <BgImage />
             <Container>
                     <Form name="userLoginForm" onSubmit={this.submitUserLoginForm}>
                     <FormGroup >

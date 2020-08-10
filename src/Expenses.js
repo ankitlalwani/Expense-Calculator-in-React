@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import AppNav from './AppNav';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Container, FormGroup, Form, Button, Label, Input, Table} from "reactstrap";
+import { Container, FormGroup, Form, Button, Label, Input, Table, Badge} from "reactstrap";
 import { Link } from "react-router-dom";
 import Category from "./Category";
 import Moment from 'react-moment';
@@ -17,7 +17,7 @@ emptyItem = {
     date: new Date(),
     location: '',
     amount: '',
-    user: {username:'ankitlalwani',password:'12345'},
+    user: {username:sessionStorage.getItem('username'),password:''},
     category: {id:101, categoryType:'Travel'},
 }
 
@@ -43,9 +43,10 @@ constructor(props){
      async componentDidMount(){
         const response = await fetch("/api/categories")
         const body = await response.json(); 
-        const username = localStorage.getItem('username');
-        console.log('UserName from localvariable ', username); 
-        const response1 = await fetch("/api/getExpenses")
+        console.log("Categories Response: ", body);
+        const username = this.state.item.user.username;
+        console.log('UserName from localvariable ', username);  
+        const response1 = await fetch("/api/expenses/"+username)
         const body1 = await response1.json();
         this.setState({categories :body, isLoading :false, Expenses: body1});
     };
@@ -132,7 +133,11 @@ constructor(props){
         return ( 
             <div>
                 <AppNav />
+                <BgImage />
                 <Container>
+                    <div>
+                        {sessionStorage.getItem('message')}
+                    </div>
                     <Form onSubmit={this.addExpense}>
                     <FormGroup >
                         <Label for="title">Title</Label>
@@ -163,8 +168,8 @@ constructor(props){
                     </Form>
                 </Container>
                 <Container>
-                <h2> All Expenses</h2>
-                <Table>
+                <h2><Badge variant="secondary">All Expenses</Badge> </h2>
+                <Table striped bordered hover>
                     <thead>
                         <tr>
                             <th>

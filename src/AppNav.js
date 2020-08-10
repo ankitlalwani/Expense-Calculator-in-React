@@ -36,7 +36,7 @@ class AppNav extends Component {
             <NavItem>
               <NavLink href="/login">Login</NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className="d-flex justify-content-end">
               <NavLink href="https://github.com/ankitlalwani">GitHub</NavLink>
             </NavItem>
           </Nav>
