@@ -6,11 +6,15 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Repository
 public interface ExpenseRepo extends CrudRepository<Expense, Long> {
 
-    @Query("select E from Expense E where E.user.Username = :userName order by E.date")
+    @Query("select E from Expense E where E.user.Username = :userName order by E.date desc")
     Collection<Expense> findByUserName(@Param("userName") String userName);
+
+    @Query("select sum(E.amount)  from Expense E where E.user.Username = :userName and E.date like '%2020-08%' group by E.category")
+    ArrayList<Double> findByUserNameAndMonth(@Param("userName") String userName, @Param("month") String month);
 }

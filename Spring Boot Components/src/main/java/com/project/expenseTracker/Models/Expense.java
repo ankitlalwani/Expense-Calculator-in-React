@@ -26,8 +26,8 @@ public class Expense {
     }
 
     String Title;
-    Date date;
-    String amount;
+    String date;
+    Double amount;
     String location;
 
     public long getId() {
@@ -38,19 +38,19 @@ public class Expense {
         Id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public String getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

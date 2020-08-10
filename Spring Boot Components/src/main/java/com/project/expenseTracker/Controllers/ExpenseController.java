@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -32,6 +33,12 @@ public class ExpenseController {
     @GetMapping("/expenses/{userName}")
     Collection<Expense> getExpensesByID(@PathVariable String userName){
         return expenseRepo.findByUserName(userName);
+    }
+
+    @GetMapping("/expenses/{userName}/{month}")
+    ArrayList<Double> getExpensesForPie(@PathVariable String userName, @PathVariable String month){
+
+        return expenseRepo.findByUserNameAndMonth(userName,month);
     }
 
     @PostMapping("/expenses")
