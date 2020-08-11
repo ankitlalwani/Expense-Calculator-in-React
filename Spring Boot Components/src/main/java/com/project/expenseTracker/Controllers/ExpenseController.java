@@ -1,9 +1,8 @@
 package com.project.expenseTracker.Controllers;
 
-import com.project.expenseTracker.Models.Category;
 import com.project.expenseTracker.Models.Expense;
+import com.project.expenseTracker.Models.ExpenseDetails;
 import com.project.expenseTracker.Repository.ExpenseRepo;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api")
@@ -36,9 +35,11 @@ public class ExpenseController {
     }
 
     @GetMapping("/expenses/{userName}/{month}")
-    ArrayList<Double> getExpensesForPie(@PathVariable String userName, @PathVariable String month){
+    ArrayList<ExpenseDetails> getExpensesForPie(@PathVariable String userName, @PathVariable String month){
 
-        return expenseRepo.findByUserNameAndMonth(userName,month);
+        ArrayList<ExpenseDetails> hola = expenseRepo.findByUserNameAndMonth(userName,month);
+
+        return hola;
     }
 
     @PostMapping("/expenses")

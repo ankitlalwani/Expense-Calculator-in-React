@@ -14,3 +14,4 @@ insert into expense values ( 1002, 'Cali n Titos', 200.00,'2020-08-04T16:00:00.0
 insert into expense values ( 1003, 'Patel Brothers', 200.00,'2020-08-05T16:00:00.000Z', 'Atlanta', 103 , 'anuadwani');
 insert into expense values ( 1004, 'Honest Restaurant', 200.00,'2020-08-03T16:00:00.000Z', 'Atlanta', 103 , 'anuadwani');
 insert into expense values ( 1005,'Kroger',  79.00, '2020-08-04T17:00:00.000Z', 'Charlotte',  103, 'ankitlalwani' );
+insert into expense values ( 1006,'Kroger1',  23.00, '2020-08-04T17:00:00.000Z', 'Charlotte',  103, 'ankitlalwani' );
