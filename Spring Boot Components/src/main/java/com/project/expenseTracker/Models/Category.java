@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name = "category")
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
     private String CategoryType;
 

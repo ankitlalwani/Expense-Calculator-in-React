@@ -64,7 +64,7 @@ class Register extends Component {
                 if(response.status===201){
             
                     sessionStorage.setItem('username', fields.username);
-                    sessionStorage.setItem('message', 'User Added succesfully');
+                    sessionStorage.setItem('message', 'User Registration Successful, please add your expenses');
         
                     //redirect to expenses after successful login
                     this.props.history.push('/expenses');
@@ -136,13 +136,9 @@ class Register extends Component {
         <div>
             <AppNav />
             <BgImage />
-            <Container>
+            <Container style={{backgroundColor:'lightgray'}}>
+              <h1 style={{fontFamily:'sans-serif', fontSize:30}}>Enter your details to Register</h1>
                     <Form name="userRegistrationForm" onSubmit={this.submituserRegistrationForm}>
-                        <FormGroup>
-                            <Label>
-                                Enter your details to Register
-                            </Label>
-                        </FormGroup>
                     <FormGroup >
                         <Label for="username">Enter UserName</Label>
                         <Input type="text" name="username" id="username" value={this.state.fields.username} onChange={this.handleChange}/>

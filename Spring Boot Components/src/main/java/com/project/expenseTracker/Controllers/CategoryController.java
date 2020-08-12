@@ -38,6 +38,7 @@ public class CategoryController {
     @PostMapping("/category")
     ResponseEntity<Category> addCategory(@RequestBody Category category) throws URISyntaxException {
 
+        System.out.println("Category Details"+ category);
         Category result = categoryRepo.save(category);
         return ResponseEntity.created(new URI(("/api/category")+result.getId())).body(result);
     }

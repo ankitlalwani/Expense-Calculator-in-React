@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import AppNav from './AppNav';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Container, FormGroup, Form, Button, Label, Input, Table, Badge} from "reactstrap";
+import { Container, FormGroup, Form, Button, Label, Input, Table, Badge, Nav} from "reactstrap";
 import { Link } from "react-router-dom";
 import Category from "./Category";
 import Moment from 'react-moment';
@@ -18,7 +18,7 @@ emptyItem = {
     location: '',
     amount: '',
     user: {username:sessionStorage.getItem('username'),password:''},
-    category: {id:101, categoryType:'Travel'},
+    category: {id:0, categoryType:''},
 }
 
 constructor(props){
@@ -82,15 +82,20 @@ constructor(props){
         event.preventDefault();
         const username = this.state.item.user.username;
         const {item} = this.state;
-        let errors = {};
-
+        
         if(username===null)
             {
+                let errors = {};
                 errors["username"] = "*Please login before adding any expenses";
+                this.setState({
+                    errors: errors,
+                    item: item
+                })
             }
         else
             {
-            await fetch('/api/expenses', {
+            if (this.validateForm()) {
+                await fetch('/api/expenses', {
                     method: 'POST' ,
                     headers: {
                         'Accept': 'application/json',
@@ -101,10 +106,9 @@ constructor(props){
             console.log(this.state);
             window.location.reload();
             }
-            this.setState({
-                errors: errors,
-                item: item
-            });
+            
+            }
+               
         }
 
 
@@ -132,6 +136,41 @@ constructor(props){
             console.log(item)
         }
 
+
+        validateForm() {
+
+            let fields = this.state.item;
+            let errors = {};
+            let formIsValid = true;
+      
+            if (!fields.title) {
+              formIsValid = false;
+              errors["title"] = "*Please enter expense title.";
+            }
+      
+            if (fields.category.id===0) {
+              formIsValid = false;
+              errors["category"] = "*Please choose a category";
+            }
+
+            if (!fields.amount) {
+                formIsValid = false;
+                errors["amount"] = "*Please enter some amount";
+              }
+
+              if (!fields.location) {
+                formIsValid = false;
+                errors["location"] = "*Please specify the location";
+              }
+      
+            this.setState({
+              errors: errors
+            });
+            return formIsValid; 
+      
+          }
+
+
     render() {
         
     const {categories, isLoading, Expenses} = this.state;
@@ -147,20 +186,25 @@ constructor(props){
             <div>
                 <AppNav />
                 <BgImage />
-                <Container>
+                
+                <Container style={{backgroundColor:'lightgray'}}>
                     <div>
-                        {sessionStorage.getItem('message')}
+                    <h1 style={{fontFamily:'sans-serif', fontSize:30}}>{sessionStorage.getItem('message')}</h1>   
                     </div>
-                    <Form striped bordered onSubmit={this.addExpense}>
+
+                    <Form onSubmit={this.addExpense}>
+                    
                     <FormGroup >
                         <Label for="title">Title</Label>
                         <Input type="text" name="title" id="title" onChange={this.handleChange}/>
+                        <div color="danger" className="errorMsg">{this.state.errors.title}</div>
                     </FormGroup>
                     <FormGroup>
                         <Label for="category">Category</Label>
                         <select selected={this.state.item.category.id} name="id" name2="categoryType" onChange={this.handleChange1} >
                             {categoryList} 
                         </select>
+                        <div color="danger" className="errorMsg">{this.state.errors.category}</div>
                     </FormGroup>
                     <FormGroup>
                         <Label for="date">Expense Date</Label>
@@ -169,10 +213,12 @@ constructor(props){
                     <FormGroup>
                         <Label for="amount">Amount</Label>
                         <Input type="text" name="amount" id="amount" onChange={this.handleChange}/>
+                        <div color="danger" className="errorMsg">{this.state.errors.amount}</div>
                     </FormGroup>
                     <FormGroup>
                         <Label for="location">Location</Label>
                         <Input type="text" name="location" id="location" onChange={this.handleChange}/>
+                        <div color="danger" className="errorMsg">{this.state.errors.location}</div>
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Add Expense</Button>{''}
@@ -180,8 +226,11 @@ constructor(props){
                     </FormGroup>
                         <div color="danger" className="errorMsg">{this.state.errors.username}</div>
                     </Form>
+                    
                 </Container>
-                <Container>
+                
+                <Container style={{backgroundColor:'lightblue'}}>
+                
                 <h2><Badge variant="secondary">All Expenses</Badge> </h2>
                 <Table striped bordered hover>
                     <thead>

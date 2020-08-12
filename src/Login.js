@@ -50,6 +50,7 @@ class Login extends Component {
           if(response.status===200){
             
             sessionStorage.setItem('username', fields.username)
+            sessionStorage.setItem('message', '');
 
             //redirect to expenses after successful login
             this.props.history.push('/expenses');
@@ -113,7 +114,7 @@ class Login extends Component {
         <div>
             <AppNav />
             <BgImage />
-            <Container>
+            <Container style={{backgroundColor:'lightgray'}}>
                     <Form name="userLoginForm" onSubmit={this.submitUserLoginForm}>
                     <FormGroup >
                         <Label for="username">UserName</Label>
