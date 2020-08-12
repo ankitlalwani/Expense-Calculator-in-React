@@ -33,7 +33,7 @@
   "proxy": "http://localhost:8080"
   ,
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "React-App"
   },
   "browserslist": {
     "production": [
