@@ -53,7 +53,7 @@ class Login extends Component {
             sessionStorage.setItem('message', '');
 
             //redirect to expenses after successful login
-            this.props.history.push('/expenses');
+            this.props.history.push('/');
           }else if(response.status===401){
             errors["password"] = "*Invalid password, Please enter correct User credentials";
           } else{

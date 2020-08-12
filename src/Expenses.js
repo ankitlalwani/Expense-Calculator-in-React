@@ -18,7 +18,7 @@ emptyItem = {
     location: '',
     amount: '',
     user: {username:sessionStorage.getItem('username'),password:''},
-    category: {id:0, categoryType:''},
+    category: {id:1, categoryType:'Travel'},
 }
 
 constructor(props){

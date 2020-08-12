@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "expense")
 public class Expense {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
     public String getTitle() {
