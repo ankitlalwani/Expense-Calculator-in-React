@@ -1,6 +1,4 @@
 import React,{Component} from "react";
-import CanvasJSReact from './canvasjs.react';
-import { CanvasJS } from './canvasjs.react';
 import { CanvasJSChart} from './canvasjs.react';
 
 
@@ -27,30 +25,28 @@ async componentDidMount(){
     console.log("Year&Month", YearAndMonth);
     const response1 = await fetch("/api/expenses/"+username+"/"+YearAndMonth)
     const body = await response1.json();
-    console.log('Body1: ', body);
     this.setState({fields: body});
 };
     
     render() {
         const fields = this.state.fields;
         const Month = this.state.YearAndMonth;
-        console.log("Fields: ", fields);
+        const username = this.state.user.username;
         let dataPoints = fields.map(function(item){
             return {
                 y: item.sum_of_amounts,
                 label: item.category_Type
             };
         });
-
-        console.log("dataPoints: ", dataPoints);
         
 		const options = {
 			theme: "dark2",
-			animationEnabled: true,
+            animationEnabled: true,
+            animationDuration: 2000,
 			exportFileName: "Expenses for the month of "+ Month,
 			exportEnabled: true,
 			title:{
-				text: "Expenses for the month of "+ Month
+				text: "Hello "+username+", your expenses for the month of "+ Month
 			},
 			data: [{
 				type: "pie",

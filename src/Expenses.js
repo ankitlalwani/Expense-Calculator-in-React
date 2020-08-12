@@ -28,8 +28,8 @@ constructor(props){
         isLoading: true,
         Expenses: [],
         categories: [],
-        item: this.emptyItem
-
+        item: this.emptyItem,
+        errors: {}
      };
 
      this.addExpense = this.addExpense.bind(this);
@@ -80,18 +80,31 @@ constructor(props){
     
    async addExpense(event){
         event.preventDefault();
-
+        const username = this.state.item.user.username;
         const {item} = this.state;
-        await fetch('/api/expenses', {
-                method: 'POST' ,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(item)
-        });  
-        console.log(this.state);
-        window.location.reload();
+        let errors = {};
+
+        if(username===null)
+            {
+                errors["username"] = "*Please login before adding any expenses";
+            }
+        else
+            {
+            await fetch('/api/expenses', {
+                    method: 'POST' ,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(item)
+            });  
+            console.log(this.state);
+            window.location.reload();
+            }
+            this.setState({
+                errors: errors,
+                item: item
+            });
         }
 
 
@@ -138,7 +151,7 @@ constructor(props){
                     <div>
                         {sessionStorage.getItem('message')}
                     </div>
-                    <Form onSubmit={this.addExpense}>
+                    <Form striped bordered onSubmit={this.addExpense}>
                     <FormGroup >
                         <Label for="title">Title</Label>
                         <Input type="text" name="title" id="title" onChange={this.handleChange}/>
@@ -165,6 +178,7 @@ constructor(props){
                         <Button color="primary" type="submit">Add Expense</Button>{''}
                         <Button color="secondary" tag={Link} to='/categories'>cancel</Button>
                     </FormGroup>
+                        <div color="danger" className="errorMsg">{this.state.errors.username}</div>
                     </Form>
                 </Container>
                 <Container>
