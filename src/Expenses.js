@@ -222,7 +222,7 @@ constructor(props){
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Add Expense</Button>{''}
-                        <Button color="secondary" tag={Link} to='/categories'>cancel</Button>
+                        <Button color="secondary" tag={Link} to='/'>cancel</Button>
                     </FormGroup>
                         <div color="danger" className="errorMsg">{this.state.errors.username}</div>
                     </Form>

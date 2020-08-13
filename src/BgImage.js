@@ -9,13 +9,11 @@ class BgImage extends Component {
         return ( 
             <div>
             <Container>
-            <section>
-                <div>
+            
             <BackgroundSlider
                 images={[image4]}
-                duration={5} transition={2} />
-            </div>
-            </section>
+                duration={10} transition={2} />
+            
             </Container>
         </div>
          );
