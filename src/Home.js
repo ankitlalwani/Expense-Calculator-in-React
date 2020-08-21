@@ -6,6 +6,7 @@ import ControlledCarousel from "./ControllerCarousel"
 import BgImage from "./BgImage";
 import PieChart from "./PieChart"
 import { Container } from "reactstrap";
+import DemoVideo from "./DemoVideo";
 
 class Home extends Component {
     
@@ -26,6 +27,7 @@ class Home extends Component {
                 <div>
                 <AppNav />
                 <BgImage />
+                <DemoVideo />
             </div>
             )
         }
