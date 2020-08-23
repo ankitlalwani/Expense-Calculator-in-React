@@ -189,7 +189,9 @@ constructor(props){
                 
                 <Container style={{backgroundColor:'lightgray'}}>
                     <div>
-        <h1 style={{fontFamily:'sans-serif', fontSize:30}}>{sessionStorage.getItem('message')}{sessionStorage.setItem('message', '')}</h1>   
+                        <h1 style={{fontFamily:'sans-serif', fontSize:30}}
+                        >{sessionStorage.getItem('message')}{sessionStorage.setItem('message', '')}
+                        </h1>   
                     </div>
 
                     <Form onSubmit={this.addExpense}>
