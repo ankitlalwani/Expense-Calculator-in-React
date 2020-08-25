@@ -27,7 +27,6 @@ class Home extends Component {
                 <div>
                 <AppNav />
                 <BgImage />
-                <DemoVideo />
             </div>
             )
         }

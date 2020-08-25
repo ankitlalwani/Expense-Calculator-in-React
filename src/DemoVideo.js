@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import video01 from "./assets/ExpenseTracker_Demo.mov"
+import video01 from "./assets/expenses-04.jpg"
 
 class DemoVideo extends Component {
     state = {  }
