@@ -2,10 +2,7 @@ import React,{Component} from "react";
 import AppNav from './AppNav';
 import { Container, FormGroup, Form, Button, Label, Input, Table} from "reactstrap";
 import { Link } from "react-router-dom";
-import Bgslider from "./Bgslider"
 import BgImage from "./BgImage"
-
-
 
 
 class Login extends Component {
