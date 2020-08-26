@@ -12,8 +12,8 @@ import java.util.Collection;
 import java.util.HashMap;
 
 @Repository
-public interface ExpenseRepo extends CrudRepository<Expense, Long> {
 
+public interface ExpenseRepo extends CrudRepository<Expense, Long> {
     @Query("select E from Expense E where E.user.Username = :userName order by E.date desc")
     Collection<Expense> findByUserName(@Param("userName") String userName);
 
