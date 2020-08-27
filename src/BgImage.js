@@ -13,7 +13,6 @@ class BgImage extends Component {
             <BackgroundSlider
                 images={[image4]}
                 duration={10} transition={2} />
-            
             </Container>
         </div>
          );
