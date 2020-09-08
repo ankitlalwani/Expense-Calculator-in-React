@@ -79,7 +79,7 @@ getChartData=()=>{
      const fields = this.state.fields;
         const Month = this.state.YearAndMonth;
         const username = this.state.user.username;
-        
+        console.log("Fields: ", fields);
         let dataPoints = fields.map(function(item){
             return {
                 y: item.sum_of_amounts,
@@ -87,10 +87,13 @@ getChartData=()=>{
             };
         });
     
+        console.log("datapoints :", dataPoints);
         data1.datasets[0].data = dataPoints.y;
         data1.labels = dataPoints.label;
         data1.datasets[0].backgroundColor=backColor;
         data1.datasets[0].label = "Hello "+username+", your expenses for the month of "+ Month
+
+        console.log("data1 after datapoints: ", data1);
 
      this.setState({
          data: data1
