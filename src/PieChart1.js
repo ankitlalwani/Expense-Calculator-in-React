@@ -17,6 +17,7 @@ class PieChart1 extends Component {
 
             YearAndMonth: new Date().getFullYear()+"-0"+(new Date().getMonth()+1),
             errors: {},
+            type: 'bar',
             data: {
                 labels: [0,1],
                 datasets: [{
@@ -107,6 +108,7 @@ getChartData=()=>{
         });
         let options1 = this.state.options;
         const data = this.state.data;
+        const type = this.state.type;
         
 		const options = {
 			theme: "dark2",
@@ -141,7 +143,7 @@ getChartData=()=>{
          <Bar 
                 type = {type}
                 options={options1}
-                data = {data} 
+                data = {data}   
                 redraw
                 />
         </div>
