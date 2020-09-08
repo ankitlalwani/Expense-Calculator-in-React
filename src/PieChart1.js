@@ -92,7 +92,7 @@ getChartData=()=>{
      this.setState({
          data: data1
      })
-     
+
  }
     
     render() {
@@ -105,7 +105,7 @@ getChartData=()=>{
                 label: item.category_Type
             };
         });
-        let options = this.state.options;
+        let options1 = this.state.options;
         const data = this.state.data;
         
 		const options = {
@@ -140,7 +140,7 @@ getChartData=()=>{
 
          <Bar 
                 type = {type}
-                options={options}
+                options={options1}
                 data = {data} 
                 redraw
                 />
