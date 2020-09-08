@@ -54,6 +54,7 @@ async componentDidMount(){
     const response1 = await fetch("https://expense-calculator-ankit.herokuapp.com/api/expenses/"+username+"/"+YearAndMonth)
     const body = await response1.json();
     this.setState({fields: body});
+    getChartData();
 };
 
 getChartData=()=>{
@@ -88,6 +89,7 @@ getChartData=()=>{
     
         data1.datasets[0].data = dataPoints.y;
         data1.labels = dataPoints.label;
+        data1.datasets[0].backgroundColor=backColor;
         data1.datasets[0].label = "Hello "+username+", your expenses for the month of "+ Month
 
      this.setState({
