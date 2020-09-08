@@ -7,6 +7,7 @@ import BgImage from "./BgImage";
 import PieChart from "./PieChart"
 import { Container } from "reactstrap";
 import DemoVideo from "./DemoVideo";
+import PieChart1 from "./PieChart1";
 
 class Home extends Component {
     
@@ -35,7 +36,7 @@ class Home extends Component {
                 <AppNav />
                 <BgImage />
                 <Container>
-                <PieChart />
+                <PieChart1 />
                 </Container>
             </div>
         );
