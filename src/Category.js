@@ -21,7 +21,7 @@ class Category extends Component {
     }
 
 async componentDidMount(){
-    const response = await fetch("https://expense-calculator-ankit.herokuapp.com/api/categories")
+    const response = await fetch("http://localhost:8080/api/categories")
     const body = await response.json();  
     this.setState({Categories :body, isLoading :false});
 }
@@ -36,7 +36,7 @@ async addCategory() {
         const category = this.state.category;
         console.log(category);
 
-            await fetch('https://expense-calculator-ankit.herokuapp.com/api/category', {
+            await fetch('http://localhost:8080/api/category', {
             method: 'POST' ,
             headers: {
                 'Accept': 'application/json',
@@ -96,15 +96,13 @@ async addCategory() {
   async remove(id){
       const {Categories} = this.state;
       let errors={};
+      console.log("Categories: ", Categories);
 
 
-    await fetch('https://expense-calculator-ankit.herokuapp.com/category/'+id, {
-        method: 'DELETE' ,
-        headers: {
-            'accepts': 'application/json',
-            'Content-Type': 'application/json'
-        }
+    await fetch('http://localhost:8080/api/category/'+id, {
+        method: 'DELETE'
     }).then((response)=>{
+      
         if(response.status===200){
             
             let updatedCategory = [...this.state.Categories].filter(i=>i.id!==id);

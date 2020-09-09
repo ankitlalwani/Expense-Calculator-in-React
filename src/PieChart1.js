@@ -48,7 +48,7 @@ async componentDidMount(){
     console.log('UserName from localvariable ', username); 
     const YearAndMonth = this.state.YearAndMonth; 
     console.log("Year&Month", YearAndMonth);
-    const response1 = await fetch("https://expense-calculator-ankit.herokuapp.com/api/expenses/"+username+"/"+YearAndMonth)
+    const response1 = await fetch("http://localhost:8080/api/expenses/"+username+"/"+YearAndMonth)
     const body = await response1.json();
     this.setState({fields: body});
 };
@@ -98,7 +98,7 @@ async handleChange(event){
 
      const username = this.state.user.username;
 
-     const response1 = await fetch("https://expense-calculator-ankit.herokuapp.com/api/expenses/"+username+"/"+YearAndMonth1)
+     const response1 = await fetch("http://localhost:8080/api/expenses/"+username+"/"+YearAndMonth1)
      const body = await response1.json();
 
      this.setState({fields: body, startDate: date, YearAndMonth: YearAndMonth1});
@@ -141,11 +141,11 @@ async handleChange(event){
 			}]
 		}
 		return (
-            <div>
+            <div style={{height: "50%"}}>
 		<h1> 
             Hello {username}, your expenses for the month of {Month}
         </h1>
-        <div style={{alignContent: "center", backgroundColor: "lightgray"}}>
+        <div style={{ alignContent: "center", backgroundColor: "lightgray"}}>
         <div style={{paddingLeft:900, position: "relative", alignItems: "end"}}>
                 <DatePicker
                     selected={startDate}
@@ -155,7 +155,7 @@ async handleChange(event){
                     showFullMonthYearPicker
                 />
             </div>
-            <div style={{position: "relative", alignContent: "center", backgroundColor: "lightgray"}}>
+            <div style={{ position: "relative", alignContent: "center", backgroundColor: "lightgray"}}>
          <Pie 
                 type = {type}
                 options={options1}

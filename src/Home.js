@@ -35,7 +35,7 @@ class Home extends Component {
             <div>
                 <AppNav />
                 <BgImage />
-                <Container>
+                <Container style={{height: "50%"}}>
                 <PieChart1 />
                 </Container>
             </div>
