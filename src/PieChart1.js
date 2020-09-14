@@ -48,7 +48,7 @@ async componentDidMount(){
     console.log('UserName from localvariable ', username); 
     const YearAndMonth = this.state.YearAndMonth; 
     console.log("Year&Month", YearAndMonth);
-    const response1 = await fetch("http://localhost:8080/api/expenses/"+username+"/"+YearAndMonth)
+    const response1 = await fetch("https://expense-calculator-react-ankit.herokuapp.com/api/expenses/"+username+"/"+YearAndMonth)
     const body = await response1.json();
     this.setState({fields: body});
 };
@@ -98,7 +98,7 @@ async handleChange(event){
 
      const username = this.state.user.username;
 
-     const response1 = await fetch("http://localhost:8080/api/expenses/"+username+"/"+YearAndMonth1)
+     const response1 = await fetch("https://expense-calculator-react-ankit.herokuapp.com/api/expenses/"+username+"/"+YearAndMonth1)
      const body = await response1.json();
 
      this.setState({fields: body, startDate: date, YearAndMonth: YearAndMonth1});

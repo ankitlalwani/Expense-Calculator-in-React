@@ -40,7 +40,7 @@ class Register extends Component {
             let errors = {};
             console.log(fields);
 
-        const response = await fetch("http://localhost:8080/api/allUsers")
+        const response = await fetch("https://expense-calculator-react-ankit.herokuapp.com/api/allUsers")
         const body = await response.json(); 
         const userExist = body.filter(user=>user.username===fields.username);
 
@@ -52,7 +52,7 @@ class Register extends Component {
               });
         }else{
             
-            await fetch('http://localhost:8080/api/addUser',{
+            await fetch('https://expense-calculator-react-ankit.herokuapp.com/api/addUser',{
                 method: 'POST' ,
                 headers: {
                     'Accept': 'application/json',
