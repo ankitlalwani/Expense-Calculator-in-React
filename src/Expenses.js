@@ -41,12 +41,12 @@ constructor(props){
     
 
      async componentDidMount(){
-        const response = await fetch("https://expense-calculator-react-ankit.herokuapp.com/api/categories")
+        const response = await fetch("https://expense-calculator-ankit.herokuapp.com/api/categories")
         const body = await response.json(); 
         console.log("Categories Response: ", body);
         const username = this.state.item.user.username;
         console.log('UserName from localvariable ', username);  
-        const response1 = await fetch("https://expense-calculator-react-ankit.herokuapp.com/api/expenses/"+username)
+        const response1 = await fetch("https://expense-calculator-ankit.herokuapp.com/api/expenses/"+username)
         const body1 = await response1.json();
         this.setState({categories :body, isLoading :false, Expenses: body1});
     };
@@ -64,7 +64,7 @@ constructor(props){
 
     async remove(id){
 
-        await fetch('https://expense-calculator-react-ankit.herokuapp.com/api/expenses/'+id, {
+        await fetch('https://expense-calculator-ankit.herokuapp.com/api/expenses/'+id, {
             method: 'DELETE' 
         }).then(()=>{
             let updatedExpenses = [...this.state.Expenses].filter(i=>i.id!==id);
@@ -91,7 +91,7 @@ constructor(props){
         else
             {
             if (this.validateForm()) {
-                await fetch('https://expense-calculator-react-ankit.herokuapp.com/api/expenses', {
+                await fetch('https://expense-calculator-ankit.herokuapp.com/api/expenses', {
                     method: 'POST' ,
                     headers: {
                         'Accept': 'application/json',

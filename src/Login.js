@@ -36,7 +36,7 @@ class Login extends Component {
             const fields = this.state.fields;
             console.log(fields);
 
-                await fetch('https://expense-calculator-react-ankit.herokuapp.com/api/login', {
+                await fetch('https://expense-calculator-ankit.herokuapp.com/api/login', {
                 method: 'POST' ,
                 headers: {
                     'Accept': 'application/json',
