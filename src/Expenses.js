@@ -177,7 +177,7 @@ constructor(props){
         </option> )
 
     if(isLoading)
-    return ( <div>Loading.....</div>)
+    return ( <div>Loading..... Please hold on, we are connecting to the database</div>)
         return ( 
             <div>
                 <AppNav />
