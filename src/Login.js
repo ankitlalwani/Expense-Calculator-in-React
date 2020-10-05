@@ -11,6 +11,7 @@ class Login extends Component {
         super(props);
    
         this.state = {
+          isLoading: true,
             fields: {username: '', password: ''},
             errors: {}
         }
@@ -107,6 +108,7 @@ class Login extends Component {
 
 
     render() { 
+
         return (
         <div>
             <AppNav />
