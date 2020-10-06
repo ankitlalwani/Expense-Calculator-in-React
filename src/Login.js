@@ -60,7 +60,8 @@ class Login extends Component {
           }
           this.setState({
             errors: errors,
-            fields: fields
+            fields: fields,
+            isLoading: true
           })
         }) ;   
 
