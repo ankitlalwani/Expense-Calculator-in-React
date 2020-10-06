@@ -15,6 +15,7 @@ class Register extends Component {
         super(props);
    
         this.state = {
+          isLoading: true,
             usernameList: [],
             fields: {username: '', password: '', emailid: ''},
             errors: {}
