@@ -28,6 +28,7 @@ class Login extends Component {
   
       }
 
+      //validate user information, validate credentials from API
       async submitUserLoginForm(e) {
         e.preventDefault();
         console.log(" Fields: ",this.state)

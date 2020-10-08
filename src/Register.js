@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 import Bgslider from "./Bgslider"
 import BgImage from "./BgImage";
 
-
-
-
-
 class Register extends Component {
 
     constructor(props){
@@ -52,7 +48,6 @@ class Register extends Component {
                 errors: errors
               });
         }else{
-            
             await fetch('https://expense-calculator-ankit.herokuapp.com/api/addUser',{
                 method: 'POST' ,
                 headers: {
@@ -61,12 +56,9 @@ class Register extends Component {
                 },
                 body: JSON.stringify(fields)
             }).then((response)=>{
-
-                if(response.status===201){
-            
+                if(response.status===201){     
                     sessionStorage.setItem('username', fields.username);
                     sessionStorage.setItem('message', 'User Registration Successful, please add your expenses');
-        
                     //redirect to expenses after successful login
                     this.props.history.push('/expenses');
                   } else{
