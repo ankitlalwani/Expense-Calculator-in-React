@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import AppNav from './AppNav';
-import { Container, FormGroup, Form, Button, Label, Input, Table, Badge, Jumbotron} from "reactstrap";
+import { Container, Button, Input, Table} from "reactstrap";
 import BgImage from "./BgImage";
 
 
