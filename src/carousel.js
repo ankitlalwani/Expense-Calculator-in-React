@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import Carousel from 'react-bootstrap/Carousel'
 import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
 import image2 from './assets/expenses-02.jpg'

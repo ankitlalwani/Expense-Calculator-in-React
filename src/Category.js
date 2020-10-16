@@ -124,7 +124,7 @@ render() {
     const {Categories, isLoading, categoryId} = this.state;
 
     if(isLoading)
-        return ( <div>Loading.....</div>)  
+        return ( <div>Loading. Please hold on, we are connecting to the database</div>)  
 
     return( <div>
         <AppNav />
