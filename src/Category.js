@@ -26,7 +26,7 @@ async componentDidMount(){
     this.setState({Categories :body, isLoading :false});
 }
 
-
+//add new category.
 async addCategory() {
     console.log(" Fields: ",this.state)
     if (this.validateForm()) {
@@ -62,6 +62,7 @@ async addCategory() {
 
   }
 
+  //form validation.
   validateForm() {
 
     let categoryType = this.state.category.categoryType;
@@ -82,6 +83,7 @@ async addCategory() {
 
   }
 
+  //handle change event
   handleChange(event) {
     let Categories = this.state.Categories;
     let category = this.state.category;
@@ -93,6 +95,7 @@ async addCategory() {
   }
 
 
+  //remove category from the database using categoryID
   async remove(id){
       const {Categories} = this.state;
       let errors={};
@@ -119,7 +122,7 @@ async addCategory() {
 
 }
 
-
+//main render component
 render() { 
     const {Categories, isLoading, categoryId} = this.state;
 
