@@ -62,6 +62,7 @@ constructor(props){
       }
       
 
+    //remove the expense based on the expenseID
     async remove(id){
 
         await fetch('https://expense-calculator-ankit.herokuapp.com/api/expenses/'+id, {
@@ -73,7 +74,7 @@ constructor(props){
 
     }
 
-    
+    //Add expense once the form is submitted
    async addExpense(event){
         event.preventDefault();
         const username = this.state.item.user.username;
@@ -108,7 +109,7 @@ constructor(props){
         }
 
 
-
+        //in case of any change at the DOM
         handleChange(event){
             const target = event.target;
             const value = target.value;
@@ -132,7 +133,7 @@ constructor(props){
             console.log(item)
         }
 
-
+        //form validations
         validateForm() {
 
             let fields = this.state.item;
@@ -166,7 +167,7 @@ constructor(props){
       
           }
 
-
+    //main render method for this component.
     render() {
         
     const {categories, isLoading, Expenses} = this.state;
