@@ -41,7 +41,7 @@ class PieChart1 extends Component {
         this.handleChange = this.handleChange.bind(this);
 
         }
-
+//for the api call when component mount
 async componentDidMount(){
     
     const username = this.state.user.username;
@@ -53,6 +53,8 @@ async componentDidMount(){
     this.setState({fields: body});
 };
 
+
+//populate chart data
 getChartData=()=>{
         
      let data1 = this.state.data;
@@ -89,6 +91,7 @@ getChartData=()=>{
 
  }
 
+//handle change of event
 async handleChange(event){
     const date = event;
      let YearAndMonth1 = event;
@@ -106,6 +109,7 @@ async handleChange(event){
 
  }
     
+    //render the component at the DOM
     render() {
         const fields = this.state.fields;
         const Month = this.state.YearAndMonth;

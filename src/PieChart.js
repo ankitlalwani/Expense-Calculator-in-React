@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import { CanvasJSChart} from './canvasjs.react';
 
-
+//this component is not being used currently
 class PieChart extends Component {
 
     constructor(props){

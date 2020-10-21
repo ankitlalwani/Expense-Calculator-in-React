@@ -6,6 +6,8 @@ import image2 from './assets/expenses-02.jpg'
 import image3 from './assets/expense-03.png'
 import image4 from './assets/expenses-04.jpg'
 
+
+//this component is not being used currently
 class ControlledCarousel extends Component {
     state = {  }
     render() { 

@@ -2,6 +2,7 @@ var React = require('react');
 var CanvasJS = require('./canvasjs.min');
 CanvasJS = CanvasJS.Chart ? CanvasJS : window.CanvasJS;
 
+//this component is not being used currently
 class CanvasJSChart extends React.Component {
 	static _cjsContainerId = 0
 	constructor(props) {		
